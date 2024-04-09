@@ -1,0 +1,18 @@
+extension using interface zrap630i_shoptp_05d
+implementation in class zbp_rap630r_shop_x_fbk_05d_ext unique;
+
+extend behavior for Shop
+{
+  validation zz_validateDeliverDate on save
+  {
+    create; field DeliveryDate;
+  }
+  extend draft determine action Prepare
+  {
+    validation zz_validateDeliverDate;
+  }
+  determination ZZ_setOverallStatus on modify { field OrderedItem; }
+  field ( readonly ) zz_feedback_zaa;
+  action ( authorization : global, features : instance ) ZZ_ProvideFeedback parameter ZRAP630_A_Feedback_05D result [1] $self;
+
+}
